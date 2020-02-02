@@ -38,8 +38,10 @@ module Naturally
         [:int, @val.to_i]
       elsif @val.upcase =~ /^(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/
         [:int, convert_roman_numerals]
+      elsif @val =~ /(\D)\1{1,}/
+        [:str, @val.length, $1]
       else
-        [:str, @val]
+        [:str, @val.length, @val]
       end
     end
 
